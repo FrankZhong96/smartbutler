@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "27.0.3"
+    //**兼容Android6.0系统所需，如果这句话报错，可在dependencies标签下使用compile 'cn.bmob.android:http-legacy:1.0'**
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId "com.frank.smartbutler"
+        minSdkVersion 21
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' , 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'x86', 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        //配置JNILibs
+        sourceSets {
+            main {
+                jniLibs.srcDirs = ['libs']
+            }
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+    //TabLayout
+    compile 'com.android.support:design:26.0.0-alpha1'
+    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    compile 'com.tencent.bugly:crashreport:latest.release'
+    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
+    //3.5.5：请务必查看下面注释[1]
+    compile('cn.bmob.android:bmob-sdk:3.5.5') {
+        //防止冲突，过滤
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+        exclude group: 'io.reactivex:rxandroid'
+        exclude group: 'io.reactivex:rxjava'
+        exclude group: 'com.squareup.okio'
+    }
+    //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
+    compile 'cn.bmob.android:http-legacy:1.0'
+    compile 'com.android.support:support-v4:23.2.1'
+    //圆形图片框架
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    //RxVolley= Volley+RxJava+OkHttp,和Bomb有冲突，两个都使用了RxJava架包
+    compile('com.kymjs.rxvolley:rxvolley:1.1.2') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+        exclude group: 'com.squareup.okio'
+        exclude group: 'io.reactivex'
+    }
+    //RxVolley下载模块
+    compile('com.kymjs.rxvolley:okhttp:1.1.0') {
+        exclude group: 'com.squareup.okhttp3'
+        exclude group: 'com.squareup.okio'
+    }
+    //NumberProgressBar
+    compile 'com.daimajia.numberprogressbar:library:1.2@aar'
+    //图片加载框架 Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    //图片缩放 PhotoView
+    compile 'com.github.chrisbanes.photoview:library:1.2.3'
+    //讯飞语音包
+    compile files('libs/Msc.jar')
+    compile files('libs/Sunflower.jar')
+    //numberprogressbar数字百分比进度条
+    compile 'com.daimajia.numberprogressbar:library:1.4@aar'
+    compile project(path: ':libzxing')
+    compile files('libs/BaiduLBS_Android.jar')
+    //implementation project(':libzxing')
+    //implementation project(':libzxing')
+    compile project(path: ':libzxing')
+}

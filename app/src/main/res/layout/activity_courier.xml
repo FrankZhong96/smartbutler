@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <com.frank.smartbutler.view.FocusTextView
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="顺丰:sf 申通:sto 圆通:yt 韵达:yd 天天:tt EMS:ems 中通:zto 汇通:ht 全峰:qf 德邦:db 国通:gt 如风达:rfd 京东快递:jd 宅急送:zjs EMS国际:emsg Fedex国际:fedex 快捷速递:kuaijie 信丰物流:xfwl 邮政国内:yzgn UPS国际快递:ups 速尔快递:suer 优速快递:yousu"
+        android:textColor="@color/colorAccent" >
+    </com.frank.smartbutler.view.FocusTextView>
+
+    <EditText
+        android:id="@+id/et_name"
+        android:text="yd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="快递公司"/>
+
+    <EditText
+        android:id="@+id/et_number"
+        android:text="3101656932433"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="快递单号"/>
+
+    <Button
+        android:id="@+id/btn_get_courier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg"
+        android:text="查询"
+        android:textColor="@android:color/white"/>
+
+    <ListView
+        android:id="@+id/mListView"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        android:layout_weight="1"/>
+    <ListView
+        android:id="@+id/courierNameListView"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

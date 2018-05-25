@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 上一页移入动画	(-屏幕宽度,y)到(0,y) 动画时间500ms -->
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="500"
+    android:fromXDelta="-100%p"
+    android:toXDelta="0" >
+
+</translate>

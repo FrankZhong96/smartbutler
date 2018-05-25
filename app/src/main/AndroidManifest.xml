@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.frank.smartbutler">
+    <!--读取Log -->
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <!--允许联网 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!--获取GSM（2g）、WCDMA（联通3g）等网络状态的信息  -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--获取wifi网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!--获取sd卡写的权限，用于文件上传和下载-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <!--获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <!--允许程序改变网络连接状态 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <!--读取手机信息权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!--读取联系人权限，上传联系人需要用到此权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!--外存储读权限，构建语法需要用到此权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!--配置权限，用来记录应用配置信息 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <!--手机定位信息，用来为语义等功能提供定位，提供更精准的服务-->
+    <!--定位信息是敏感信息，可通过Setting.setLocationEnable(false)关闭定位请求 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!--如需使用人脸识别，还要添加：摄相头权限，拍照需要用到 -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!--短信读取-->
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <!--窗体-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!--百度地图-->
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
+    <application
+        android:name=".application.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="8OQOL82fypcndWIIO94ATZBSUHt3wdeo"/>
+
+        <activity
+            android:name=".ui.SplashActivity"
+            android:theme="@style/NoActivityFullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.SettingActivity"
+            android:label="@string/Setting"/>
+        <!--主页-->
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme"/>
+        <!--引导页-->
+        <activity
+            android:name=".ui.GuideActivity"
+            android:theme="@style/NoActivityFullscreen"/>
+        <!--登入页-->
+        <activity android:name=".ui.LoginActivity"/>
+        <!--注册页-->
+        <activity android:name=".ui.RegisteredActivity"/>
+        <!--忘记密码-->
+        <activity android:name=".ui.ForgetPasswordActivity"/>
+        <!--快递查询-->
+        <activity android:name=".ui.CourierActivity"/>
+        <!--归属地查询-->
+        <activity android:name=".ui.PhoneActivity"/>
+        <!--网页加载-->
+        <activity android:name=".ui.WebViewActivity"/>
+        <!--更新界面-->
+        <activity
+            android:name=".ui.UpdatActivity"
+            android:label="更新"/>
+
+        <!--我的二维码-->
+        <activity
+            android:name=".ui.QrCodeActivity"
+            android:label="我的二维码"/>
+        <!--我的位置-->
+        <activity android:name=".ui.LocationActivity"/>
+        <!--关于软件-->
+        <activity android:name=".ui.AboutActivity"
+            android:label="关于软件"/>
+        <service android:name=".service.SmsService"/>
+        <service android:name="com.baidu.location.f"
+                 android:enabled="true"
+                 android:process=":remote"/>
+
+    </application>
+
+</manifest>
